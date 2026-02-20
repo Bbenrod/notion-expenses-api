@@ -1,0 +1,26 @@
+{
+  "name": "notion-expenses-api",
+  "version": "1.0.0",
+  "description": "Minimal Node.js + Express API to capture expenses from iPhone Shortcuts and store them in Notion. Provides endpoints to fetch months and payment methods and create expense entries. Built for fast, personal expense logging and simple automation.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bbenrod/notion-expenses-api.git"
+  },
+  "author": "Bbenrodri",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Bbenrod/notion-expenses-api/issues"
+  },
+  "homepage": "https://github.com/Bbenrod/notion-expenses-api#readme",
+  "dependencies": {
+    "axios": "^1.13.5",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1"
+  }
+}
