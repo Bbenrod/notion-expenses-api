@@ -1,4 +1,5 @@
-const express = require("express");
+const express = require('express');
+const routes = require('./routes');
 
 const app = express();
 
@@ -6,10 +7,11 @@ const app = express();
 app.use(express.json());
 
 // Health check
-app.get("/health", (req, res) => {
-  res.json({ status: "ok" });
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok' });
 });
 
 // Routes
+app.use(routes);
 
 module.exports = app;
