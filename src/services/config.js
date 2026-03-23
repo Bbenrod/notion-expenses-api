@@ -1,7 +1,12 @@
+const notion = require('../services/notion');
+
 const getConfig = async () => {
+  const months = await notion.getMonths();
+  const cards = await notion.getCards();
+
   return {
-    meses: [],
-    tarjetas: [],
+    months,
+    cards,
   };
 };
 
