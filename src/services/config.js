@@ -1,12 +1,15 @@
 const notion = require('../services/notion');
+const mapper = require('../utils/mapper');
 
 const getConfig = async () => {
-  const months = await notion.getMonths();
-  const cards = await notion.getCards();
+  const raw_months = await notion.getMonths();
+  const months = raw_months.map(mapper.mapItem);
 
+  const raw_paymentMethods = await notion.getPaymentMethods();
+  const paymentMethods = raw_paymentMethods.map(mapper.mapItem);
   return {
     months,
-    cards,
+    paymentMethods,
   };
 };
 

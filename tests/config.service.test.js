@@ -13,21 +13,39 @@ describe('config service', () => {
     jest.restoreAllMocks();
   });
 
-  it('should call notion and return mapped months and cards', async () => {
-    // Mock de respuesta de Notion
-    notion.getMonths.mockResolvedValue([{ id: 'm1', value: 'FEB-26' }]);
-    notion.getCards.mockResolvedValue([{ id: 't1', value: 'BBVA' }]);
+  it('should call notion and return mapped months and payment methods', async () => {
+    notion.getMonths.mockResolvedValue([
+      {
+        id: 'm1',
+        properties: {
+          Mes: {
+            type: 'title',
+            title: [{ plain_text: 'FEB-26' }],
+          },
+        },
+      },
+    ]);
+
+    notion.getPaymentMethods.mockResolvedValue([
+      {
+        id: 't1',
+        properties: {
+          'Metodo de pago': {
+            type: 'title',
+            title: [{ plain_text: 'BBVA' }],
+          },
+        },
+      },
+    ]);
 
     const result = await service.getConfig();
 
-    // Verifica llamadas
     expect(notion.getMonths).toHaveBeenCalledTimes(1);
-    expect(notion.getCards).toHaveBeenCalledTimes(1);
+    expect(notion.getPaymentMethods).toHaveBeenCalledTimes(1);
 
-    // Verifica resultado
     expect(result).toEqual({
       months: [{ id: 'm1', value: 'FEB-26' }],
-      cards: [{ id: 't1', value: 'BBVA' }],
+      paymentMethods: [{ id: 't1', value: 'BBVA' }],
     });
   });
 });
