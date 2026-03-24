@@ -6,6 +6,11 @@ const notion = require('../src/services/notion');
 describe('config service', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    jest.spyOn(console, 'error').mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
   });
 
   it('should call notion and return mapped months and cards', async () => {

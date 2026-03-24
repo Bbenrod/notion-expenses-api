@@ -6,4 +6,8 @@ const getCards = async () => {
   return [];
 };
 
-module.exports = { getMonths, getCards };
+const createExpense = async () => {
+  return {};
+};
+
+module.exports = { getMonths, getCards, createExpense };
