@@ -17,7 +17,7 @@ const mapExpenseToNotionPayload = (input, database_id) => {
       database_id,
     },
     properties: {
-      Nombre: {
+      Descripcion: {
         title: [
           {
             text: {

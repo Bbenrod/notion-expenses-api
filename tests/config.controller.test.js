@@ -17,7 +17,7 @@ describe('GET /config', () => {
   it('should return data from service', async () => {
     service.getConfig.mockResolvedValue({
       months: [{ id: '1', value: 'FEB-26' }],
-      cards: [{ id: '2', value: 'BBVA' }],
+      paymentMethods: [{ id: '2', value: 'BBVA' }],
     });
 
     const res = await request(app).get('/config');
@@ -25,7 +25,7 @@ describe('GET /config', () => {
     expect(res.statusCode).toBe(200);
     expect(res.body).toEqual({
       months: [{ id: '1', value: 'FEB-26' }],
-      cards: [{ id: '2', value: 'BBVA' }],
+      paymentMethods: [{ id: '2', value: 'BBVA' }],
     });
 
     expect(service.getConfig).toHaveBeenCalled();

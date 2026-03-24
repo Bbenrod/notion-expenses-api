@@ -79,7 +79,7 @@ describe('mapper', () => {
           database_id: 'db123',
         },
         properties: {
-          Nombre: {
+          Descripcion: {
             title: [
               {
                 text: {
@@ -111,7 +111,7 @@ describe('mapper', () => {
 
       const result = mapper.mapExpenseToNotionPayload(input, 'db123');
 
-      expect(result.properties.Nombre.title[0].text.content).toBe('');
+      expect(result.properties.Descripcion.title[0].text.content).toBe('');
     });
   });
 });

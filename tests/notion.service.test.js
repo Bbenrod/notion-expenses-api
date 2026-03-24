@@ -78,7 +78,7 @@ describe('notion service', () => {
         database_id: 'expenses_db',
       },
       properties: {
-        Nombre: {
+        Descripcion: {
           title: [
             {
               text: {
