@@ -20,7 +20,7 @@ describe('POST /expenses', () => {
     const payload = {
       amount: 150,
       description: 'Food',
-      cardId: 'abc123',
+      paymentMethodId: 'abc123',
       monthId: 'feb26',
     };
 
@@ -39,7 +39,7 @@ describe('POST /expenses', () => {
     const payload = {
       amount: 150,
       description: 'Food',
-      cardId: 'abc123',
+      paymentMethodId: 'abc123',
       monthId: 'feb26',
     };
 

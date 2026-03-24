@@ -11,4 +11,32 @@ const mapItem = (item) => {
   return { id, value };
 };
 
-module.exports = { mapItem };
+const mapExpenseToNotionPayload = (input, database_id) => {
+  return {
+    parent: {
+      database_id,
+    },
+    properties: {
+      Nombre: {
+        title: [
+          {
+            text: {
+              content: input.description,
+            },
+          },
+        ],
+      },
+      Monto: {
+        number: 150,
+      },
+      Mes: {
+        relation: [{ id: input.monthId }],
+      },
+      'Metodo de pago': {
+        relation: [{ id: input.paymentMethodId }],
+      },
+    },
+  };
+};
+
+module.exports = { mapItem, mapExpenseToNotionPayload };

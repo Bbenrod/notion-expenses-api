@@ -1,13 +1,30 @@
+require('dotenv').config();
+const notionClient = require('../config/notion');
+const mapper = require('../utils/mapper');
+
 const getMonths = async () => {
-  return [];
+  const response = await notionClient.post(
+    `/databases/${process.env.MONTHS_DATABASE_ID}/query`,
+    {},
+  );
+  return response.data.results;
 };
 
-const getCards = async () => {
-  return [];
+const getPaymentMethods = async () => {
+  const response = await notionClient.post(
+    `/databases/${process.env.PAYMENT_METHODS_DATABASE_ID}/query`,
+    {},
+  );
+  return response.data.results;
 };
 
-const createExpense = async () => {
-  return {};
+const createExpense = async (input) => {
+  const payload = mapper.mapExpenseToNotionPayload(
+    input,
+    process.env.EXPENSES_DATABASE_ID,
+  );
+  const response = await notionClient.post('/pages', payload);
+  return { id: response.data.id };
 };
 
-module.exports = { getMonths, getCards, createExpense };
+module.exports = { getMonths, getPaymentMethods, createExpense };
