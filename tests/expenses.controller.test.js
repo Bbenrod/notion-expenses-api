@@ -3,6 +3,7 @@ jest.mock('../src/services/expenses');
 const request = require('supertest');
 const app = require('../src/app');
 const service = require('../src/services/expenses');
+const { withAuth } = require('./utils/request');
 
 describe('POST /expenses', () => {
   beforeEach(() => {
@@ -24,7 +25,7 @@ describe('POST /expenses', () => {
       monthId: 'feb26',
     };
 
-    const res = await request(app).post('/expenses').send(payload);
+    const res = await withAuth('post', '/expenses').send(payload);
 
     expect(res.statusCode).toBe(201);
     expect(res.body).toEqual({ success: true });
@@ -43,7 +44,7 @@ describe('POST /expenses', () => {
       monthId: 'feb26',
     };
 
-    const res = await request(app).post('/expenses').send(payload);
+    const res = await withAuth('post', '/expenses').send(payload);
 
     expect(res.statusCode).toBe(500);
     expect(res.body).toEqual({ error: 'Internal Server Error' });
