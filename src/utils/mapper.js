@@ -27,7 +27,7 @@ const mapExpenseToNotionPayload = (input, database_id) => {
         ],
       },
       Monto: {
-        number: 150,
+        number: input.amount,
       },
       Mes: {
         relation: [{ id: input.monthId }],
